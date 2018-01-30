@@ -1,3 +1,7 @@
 .detail-image-size {
     max-width: 300px;
 }
+
+.action-links-block a {
+    cursor: pointer;
+}
