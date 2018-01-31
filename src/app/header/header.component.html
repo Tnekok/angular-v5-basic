@@ -5,17 +5,21 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="#" (click)="onSelect('recipe')">Recipes</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" (click)="onSelect('shopping-list')">Shopping List</a></li>
+                <li class="nav-item" style="cursor: pointer;">
+                    <a routerLinkActive="active" class="nav-link" routerLink="/recipes">Recipes</a>
+                </li>
+                <li class="nav-item" style="cursor: pointer;">
+                    <a routerLinkActive="active" class="nav-link" routerLink="/shopping-list">Shopping List</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" style="cursor: pointer;">
                         Manage<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="dropdown-item"><a href="#">Save Data</a></li>
-                        <li class="dropdown-item"><a href="#">Fetch Data</a></li>
+                        <li class="dropdown-item" style="cursor: pointer;"><a>Save Data</a></li>
+                        <li class="dropdown-item" style="cursor: pointer;"><a>Fetch Data</a></li>
                     </ul>
                 </li>
             </ul>
