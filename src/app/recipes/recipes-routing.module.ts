@@ -9,7 +9,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { AuthGuard } from '../auth/shared/services/auth-guard.service';
 
 const recipesRoutes = [
-    { path: 'recipes', component: RecipesComponent, children: [
+    { path: '', component: RecipesComponent, children: [
         { path: '', component: RecipeBaseComponent },
         { path: 'new', component: RecipeEditComponent, canActivate: [ AuthGuard ] },
         { path: ':id', component: RecipeDetailComponent },
