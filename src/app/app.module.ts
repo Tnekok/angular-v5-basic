@@ -20,6 +20,7 @@ import { ShoppingListService } from './shopping-list/shared/services/shopping-li
 import { RecipesService } from './recipes/shared/services/recipes.service';
 import { DataStorageService } from './shared/services/data-storage.service';
 import { AuthService } from './auth/shared/services/auth.service';
+import { AuthGuard } from './auth/shared/services/auth-guard.service';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -47,7 +48,7 @@ import { AppRoutingModule } from './app-routing.module';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [ ShoppingListService, RecipesService, DataStorageService, AuthService ],
+  providers: [ ShoppingListService, RecipesService, DataStorageService, AuthService, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
