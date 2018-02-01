@@ -13,10 +13,13 @@ import { RecipeBaseComponent } from './recipes/recipe-base/recipe-base.component
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 import { ShoppingListService } from './shopping-list/shared/services/shopping-list.service';
 import { RecipesService } from './recipes/shared/services/recipes.service';
 import { DataStorageService } from './shared/services/data-storage.service';
+import { AuthService } from './auth/shared/services/auth.service';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,7 +36,9 @@ import { AppRoutingModule } from './app-routing.module';
     ShoppingEditComponent,
     DropdownDirective,
     RecipeBaseComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,7 @@ import { AppRoutingModule } from './app-routing.module';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [ ShoppingListService, RecipesService, DataStorageService ],
+  providers: [ ShoppingListService, RecipesService, DataStorageService, AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
