@@ -31,6 +31,11 @@ export class RecipesService {
 
     constructor(private shoppingListService: ShoppingListService) { }
 
+    setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes;
+        this.emitChanges();
+    }
+
     getRecipes() {
         /* .slice() with no variables will return a copy of the array, not a pointer to access the list directly */
         return this.recipes.slice();
