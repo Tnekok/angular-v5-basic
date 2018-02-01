@@ -13,9 +13,14 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item" style="cursor: pointer;"><a class="nav-link" routerLink="/signup">Register</a></li>
-                <li class="nav-item" style="cursor: pointer;"><a class="nav-link" routerLink="/signin">Login</a></li>
-                <li class="nav-item dropdown">
+                <ng-template [ngIf]="!authService.isAuthenticated()">
+                    <li class="nav-item" style="cursor: pointer;"><a class="nav-link" routerLink="/signup">Register</a></li>
+                    <li class="nav-item" style="cursor: pointer;"><a class="nav-link" routerLink="/signin">Login</a></li>
+                </ng-template>
+                <li class="nav-item" style="cursor: pointer;" *ngIf="authService.isAuthenticated()">
+                    <a class="nav-link" (click)="onLogout()">Logout</a>
+                </li>
+                <li class="nav-item dropdown" *ngIf="authService.isAuthenticated()">
                     <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" style="cursor: pointer;">
                         Manage<span class="caret"></span>
                     </a>
