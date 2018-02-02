@@ -24,20 +24,15 @@ export class DataStorageService {
         recipes = this.formatRecipes(recipes);
         return this.httpClient.put(this.firebaseUrl + 'recipes.json', recipes, {
             observe: 'body',
-            responseType: 'json',
-            params: new HttpParams().set('auth', token)  // <-- works the same as HttpHeaders as functions is related
+            responseType: 'json'
         });
     }
 
     getRecipes() {
         const token = this.authService.getToken();
         this.httpClient.get<Recipe[]>(this.firebaseUrl + 'recipes.json', {
-            // these headers wont work in out project due to firebase expecting an auth as params
-            // headers: new HttpHeaders().set('Authorization', 'Bearer dsfasfasfsafsadfas'),  <-- for 1 .set()
-            // headers: new HttpHeaders().set('Authorization', 'Bearer dsfasfasfsafsadfas').append(), <-- for many set().append().append()
-            observe: 'body', // response (for full response data), body (only the body of the response), ...
-            responseType: 'json', // json, text, blob, arraybuffer, ...
-            params: new HttpParams().set('auth', token)  // <-- works the same as HttpHeaders as functions is related
+            observe: 'body',
+            responseType: 'json'
         })
         .map((recipes: Recipe[]) => {
             recipes = this.formatRecipes(recipes);
