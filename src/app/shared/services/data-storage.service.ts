@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import { RecipesService } from '../../recipes/shared/services/recipes.service';
@@ -12,7 +13,7 @@ export class DataStorageService {
     private firebaseUrl = 'https://ng-basic-http.firebaseio.com/';
 
     constructor(
-        private http: Http,
+        private httpClient: HttpClient,
         private recipesService: RecipesService,
         private authService: AuthService) {}
 
@@ -21,20 +22,25 @@ export class DataStorageService {
         const token = this.authService.getToken();
         let recipes = this.recipesService.getRecipes();
         recipes = this.formatRecipes(recipes);
-        return this.http.put(this.firebaseUrl + 'recipes.json?auth=' + token, recipes);
+        return this.httpClient.put(this.firebaseUrl + 'recipes.json', recipes, {
+            observe: 'body',
+            responseType: 'json'
+        });
     }
 
     getRecipes() {
         const token = this.authService.getToken();
-        this.http.get(this.firebaseUrl + 'recipes.json?auth=' + token)
-            .map((response: Response) => {
-                let recipes: Recipe[] = response.json();
-                recipes = this.formatRecipes(recipes);
-                return recipes;
-            })
-            .subscribe(
-                (recipes: Recipe[]) => this.recipesService.setRecipes(recipes)
-            );
+        this.httpClient.get<Recipe[]>(this.firebaseUrl + 'recipes.json', {
+            observe: 'body',
+            responseType: 'json'
+        })
+        .map((recipes: Recipe[]) => {
+            recipes = this.formatRecipes(recipes);
+            return recipes;
+        })
+        .subscribe(
+            (recipes: Recipe[]) => this.recipesService.setRecipes(recipes)
+        );
     }
 
     private formatRecipes(recipes) {
